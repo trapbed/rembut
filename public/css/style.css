@@ -42,8 +42,14 @@
 .c_b{
     color: black;
 }
+.c_lg{
+    color: rgb(128, 128, 128);
+}
 .c_w{
     color: white;
+}
+.c_dp{
+    color: #54339e;
 }
 .df{
     display: flex;
@@ -169,6 +175,9 @@
 .w18{
     width: 18vmax;
 }
+.w19{
+    width: 19vmax;
+}
 .w20{
     width: 20vmax;
 }
@@ -204,6 +213,9 @@
 }
 .w31{
     width: 31vmax;
+}
+.w33{
+    width: 33vmax;
 }
 .w35{
     width: 35vmax;
@@ -445,6 +457,9 @@
 .paa_0_5{
     padding: 0.5vmax;
 }
+.paa_0_8{
+    padding: 0.8vmax;
+}
 .paa_1{
     padding: 1vmax;
 }
@@ -471,6 +486,9 @@
 }
 .pb_1{
     padding-bottom: 1vmax;
+}
+.circle{
+    border-radius: 30vmax;
 }
 .br_03{
     border-radius: 0.3vmax;
@@ -629,9 +647,96 @@
     min-height: 34vmax;
 }
 
+.t_r180{
+    transform: rotateY(180deg);
+}
+
 .bg_y{
     background-color:yellowgreen;
 }
 .bg_l{
     background-color: lavender;
 }
+.bg_dp{
+    background-color: #54339e;
+}
+
+/* .slider {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slides {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 1vmax;
+    width: 79vmax;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    position: absolute;
+    box-sizing: border-box;
+    text-align: center;
+    width: 28vmax;
+  }
+  
+  .prev, .next {
+    background-color: #54339e;
+    color: #fff;
+    border: none;
+    height: 4vmax;
+    width: 4vmax;
+    cursor: pointer;
+  }
+
+  .prev>img, .next>img {
+    width: 1.6vmax;
+    height: 3vmax;
+  }
+  
+  .prev {
+    /* left: 10px; 
+  }
+  
+  .next {
+    /* right: 10px; 
+  }
+   */
+
+   .slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    flex: 0 0 33.33%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }

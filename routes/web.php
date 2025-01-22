@@ -16,4 +16,5 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/exemplairs_page/{id}', [MainController::class, 'exemplairs_page'])->name('exemplairs_page');
 
