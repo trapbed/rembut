@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 22 2025 г., 09:28
--- Версия сервера: 5.7.39
+-- Время создания: Янв 22 2025 г., 13:51
+-- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,16 +28,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `applications` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` bigint(20) UNSIGNED NOT NULL,
-  `exemplar_id` bigint(20) UNSIGNED NOT NULL,
-  `type` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `exemplar_id` bigint UNSIGNED NOT NULL,
+  `type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `place` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `applications`
+--
+
+INSERT INTO `applications` (`id`, `user_id`, `product_id`, `exemplar_id`, `type`, `date`, `place`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 3, 'Не греется, соответственно не гладит', '2025-01-22 09:39:12', 'Уфа, Рихарда Зорге 18', '2025-01-22 08:39:12', '2025-01-22 08:39:12'),
+(2, 1, 1, 3, 'Не греется, соответственно не гладит', '2025-01-22 09:39:12', 'Уфа, Рихарда Зорге 18', '2025-01-22 08:39:12', '2025-01-22 08:39:12'),
+(3, 1, 1, 3, 'Не греется, соответственно не гладит', '2025-01-22 09:39:12', 'Уфа, Рихарда Зорге 18', '2025-01-22 08:39:12', '2025-01-22 08:39:12'),
+(4, 1, 1, 3, 'Не греется, соответственно не гладит', '2025-01-22 09:39:12', 'Уфа, Рихарда Зорге 18', '2025-01-22 08:39:12', '2025-01-22 08:39:12');
 
 -- --------------------------------------------------------
 
@@ -46,10 +56,10 @@ CREATE TABLE `applications` (
 --
 
 CREATE TABLE `exemplars` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint UNSIGNED DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,8 +74,10 @@ INSERT INTO `exemplars` (`id`, `name`, `product_id`, `image`, `created_at`, `upd
 (3, 'Xiaomi', 1, '', '2025-01-16 10:15:08', '2025-01-16 10:15:08'),
 (6, 'Bosch', 4, '', '2025-01-16 10:16:08', '2025-01-16 10:16:08'),
 (7, 'Smeg', 4, '', '2025-01-16 10:16:08', '2025-01-16 10:16:08'),
-(8, 'Smeg', 2, '', '2025-01-16 10:18:46', '2025-01-16 10:18:46'),
-(9, 'Smeg', 1, '', '2025-01-16 10:18:46', '2025-01-16 10:18:46');
+(8, 'Smeg', 2, 'washing_machine_smeg.png', '2025-01-16 10:18:46', '2025-01-16 10:18:46'),
+(9, 'Smeg', 1, '', '2025-01-16 10:18:46', '2025-01-16 10:18:46'),
+(10, 'Samsung', 2, 'washing_machine_samsung.png', '2025-01-22 11:59:29', '2025-01-22 12:00:00'),
+(11, 'Siemens', 2, 'washing_machine_siemens.png', '2025-01-22 12:01:05', '2025-01-22 12:01:05');
 
 -- --------------------------------------------------------
 
@@ -74,9 +86,9 @@ INSERT INTO `exemplars` (`id`, `name`, `product_id`, `image`, `created_at`, `upd
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -98,12 +110,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -117,9 +129,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -129,10 +141,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Утюги', 'utyg.png', '2025-01-16 10:13:46', '2025-01-16 10:13:46'),
-(2, 'Стиральные машины', '', '2025-01-16 10:13:46', '2025-01-16 10:13:46'),
-(3, 'Микроволновки', '', '2025-01-16 10:14:16', '2025-01-16 10:14:16'),
-(4, 'Холодильники', '', '2025-01-16 10:14:16', '2025-01-16 10:14:16');
+(1, 'Утюги', 'iron.png', '2025-01-16 10:13:46', '2025-01-16 10:13:46'),
+(2, 'Стиральные машины', 'washing_machine.png', '2025-01-16 10:13:46', '2025-01-16 10:13:46'),
+(3, 'Микроволновки', 'microwave.png', '2025-01-16 10:14:16', '2025-01-16 10:14:16'),
+(4, 'Холодильники', 'fridge.png', '2025-01-16 10:14:16', '2025-01-16 10:14:16');
 
 -- --------------------------------------------------------
 
@@ -141,11 +153,11 @@ INSERT INTO `products` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `spares` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `amount` bigint(20) UNSIGNED NOT NULL,
-  `manafacturer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exemplar_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` bigint UNSIGNED NOT NULL,
+  `manafacturer` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exemplar_id` bigint UNSIGNED NOT NULL,
   `weight` decimal(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -166,15 +178,22 @@ INSERT INTO `spares` (`id`, `name`, `amount`, `manafacturer`, `exemplar_id`, `we
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'user', 'user@mail.ru', NULL, 'useruser', NULL, NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -214,7 +233,8 @@ ALTER TABLE `personal_access_tokens`
 -- Индексы таблицы `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Индексы таблицы `spares`
@@ -238,43 +258,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `exemplars`
 --
 ALTER TABLE `exemplars`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `spares`
 --
 ALTER TABLE `spares`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
