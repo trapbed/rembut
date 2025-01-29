@@ -124,6 +124,9 @@
 .w3{
     width: 3vmax;
 }
+.w3_5{
+    width: 3.5vmax;
+}
 .w4{
     width: 4vmax;
 }
@@ -373,6 +376,15 @@
 .h45{
     height: 45vmax;
 }
+.fsz_0_5{
+    font-size: 0.5vmax;
+}
+.fsz_0_6{
+    font-size: 0.6vmax;
+}
+.fsz_0_8{
+    font-size: 0.8vmax;
+}
 .fsz_1{
     font-size: 1vmax;
 }
@@ -391,9 +403,7 @@
 .fsz_2_3{
     font-size: 2.3vmax;
 }
-.fsz_0_8{
-    font-size: 0.8vmax;
-}
+
 .ta_c{
     text-align: center;
 }
@@ -506,6 +516,9 @@
     border: none;
     outline: none;
 }
+.ls_n{
+    list-style: none;
+}
 .brc_lp{
     border: 0.15vmax solid #d0c4df;
 }
@@ -560,6 +573,12 @@
 .t_m_2_5{
     top: -2.5vmax;
 }
+.t_22{
+    top: 22vmax;
+}
+.t_25{
+    top: 25vmax;
+}
 .mtm_1{
     margin-top: -1vmax;
 }
@@ -604,6 +623,9 @@
 }
 .l_0{
     left: 0vmax;
+}
+.l_20{
+    left: 20vmax;
 }
 .rm_5{
     right: -5vmax;
@@ -660,7 +682,17 @@
 .bg_dp{
     background-color: #54339e;
 }
-
+.bg_lp{
+    background-color: #d0c4df;
+}
+.btn_lp_dp{
+    background-color: #d0c4df;
+    color: #54339e;
+}
+.btn_lp_dp:hover{
+    background-color: #54339e;
+    color: #d0c4df;
+}
 /* .slider {
     width: 100%;
     overflow: hidden;

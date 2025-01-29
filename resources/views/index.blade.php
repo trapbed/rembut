@@ -3,6 +3,16 @@
 @section('title', 'Главная')
 
 @section('content')
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $e)
+            <script>
+                alert("{{$e}}");
+            </script> 
+        @endforeach
+    @endif
+
+
     <div class="df fdr_r ali_c w80 h35 jc_spb">
         <img class="w20" src="{{asset('img/home-appliance.png')}}" alt="">
         <div class="df fdr_c g4 w50">
