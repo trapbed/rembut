@@ -93,7 +93,12 @@ class MainController extends Controller
             $user = User::select('id','password')->where('email', '=', $request->email)->get();
             if(Hash::check($request->pass, $user[0]->password)){
                 Auth::login(User::find($user[0]->id));
-                return redirect()->route('index')->withErrors(['mesн'=>'Вы вошли в аккаунт!']);
+                if(Auth::user()->role == 'admin'){     
+                    return redirect()->route('admin_index')->withErrors(['mess'=>'Вы вошли в аккаунт!']);
+                }
+                else{
+                    return redirect()->route('index')->withErrors(['mess'=>'Вы вошли в аккаунт!']);
+                }
             }
             else{
                 return redirect()->back()->withErrors(['mess'=>'Неверный пароль!'])->withInput();
@@ -146,5 +151,15 @@ class MainController extends Controller
                 return redirect()->back()->withErrors(['unsuccess'=>'Не удалось зарегистрироваться!'])->withInput();
             }
         }
+    }
+
+    public function user_appl(){
+        $appls = DB::table('applications')->select( '*','applications.id as appl_id','exemplars.name as exe', 'products.name as prod')->where('user_id', '=', Auth::user()->id)->join('products', 'products.id', '=', 'applications.product_id')->join('exemplars', 'exemplars.id', '=', 'applications.exemplar_id')->simplePaginate(2);
+        return view('user_appl', ['appls'=>$appls, 'count'=>$appls->count()]);
+    }
+
+    public function admin_index($where=null){
+        $appls = Application::select('*')->get();
+        return view('/admin/index', ['appls'=>$appls]);
     }
 }

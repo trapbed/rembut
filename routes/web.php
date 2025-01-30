@@ -28,5 +28,9 @@ Route::get('/sign_up', function (){return view('sign_up');})->name('sign_up_show
 
 Route::post('/sign_in', [MainController::class, 'sign_in'])->name('sign_in');
 Route::post('/sign_up', [MainController::class, 'sign_up'])->name('sign_up');
+Route::get('/sign_out', function(){ Auth::logout(); return redirect()->route('index')->withErrors(['mess'=>'Вы вышли из аккаунта!']); })->name('sign_out');
 
 Route::get('/my_applications', [MainController::class, 'user_appl'])->name('user_appl');
+
+
+Route::get('/admin_index/{where?}', [MainController::class, 'admin_index'])->name('admin_index');

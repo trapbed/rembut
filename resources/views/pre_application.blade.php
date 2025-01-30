@@ -12,7 +12,7 @@
     <div class="df fdr_c g1 c_dp">
         <h3 class="fsz_1_5">Заявка на вызов мастера</h3>
         <span class="fsz_1_2">Техника: {{$prod->name}} ({{$exe->name}})</span>
-        {{--@auth--}}
+        @auth
             <form action="{{route('send_application')}}" method="POST" class="df fdr_c g1">
                 @csrf
                 <input required type="hidden" name="user_id" value="{{isset(Auth::user()->id) ? Auth::user()->id : '1'}}">
@@ -34,11 +34,11 @@
                 </label>
                 <input type="submit" class="paa_0_5 fsz_1 btn_lp_dp w10 ou_n br_03" value="Отправить">
             </form>
-        {{--@endauth
+        @endauth
 
         @guest
             <span>Зарегистрируйтесь для вызова мастера</span>
-        @endguest--}}
+        @endguest
     </div>
     @if ($errors->any())
     

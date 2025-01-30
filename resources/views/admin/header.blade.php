@@ -11,11 +11,10 @@
 <div class="df fdr_c ali_c container w98_9vx">
     <div class="df fdr_r jc_c bg_db w98_9vx pos_f">
         <div class="w90 h4 df fdr_r ali_c g6 ">
-            <a class="td_n c_w" href="{{route('index')}}"><span class="logo ff_m fsz_1 hvr">Верный</span></a>
+            <a class="td_n c_w" href="{{route('admin_index')}}"><span class="logo ff_m fsz_1 hvr">Верный</span></a>
             <div class="w60  h6 df fdr_r ali_c jc_spb ff_m fsz_0_8">
                 <div class="df fdr_r g4">
-                    <a class="td_n c_w hvr" href="{{route('index')}}">Главная</a>
-                    <a class="td_n c_w hvr" href="{{route('catalog')}}">Техника</a>
+                    <a class="td_n c_w hvr" href="{{route('admin_index')}}">Заявки</a>
                 </div>
                 
                 <div class="df fdr_r g2 c_w">
@@ -31,7 +30,6 @@
                 @endguest
 
                 @auth
-                    <a class="c_w td_n ff_m fsz_0_8" href="{{route('user_appl')}}">Мои заявки</a>
                     <a class="c_w td_n ff_m fsz_0_8" class="td_n c_w fsz_1" href="{{route('sign_out')}}">Выйти</a>
                 @endauth
             </div>

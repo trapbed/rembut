@@ -10,6 +10,6 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id','user_id','product','model','type','date'
+        'id','user_id','product','model','type','date', 'place', 'status'
     ];
 }

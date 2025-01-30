@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('type');
             $table->datetime('date');
             $table->datetime('place');
+            $table->enum('status', ['Отправлена','Принята','Отклонена']);
             $table->timestamps();
         });
     }
