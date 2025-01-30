@@ -21,6 +21,7 @@
     
     
     {{$exemplar->links()}}
+    <div class="w90 h2"></div>
 </div>
 
 @endsection

@@ -63,6 +63,9 @@
 .fdr_c{
     flex-direction: column;
 }
+.fw_w{
+    flex-wrap: wrap;
+}
 .g0_5{
     gap: 0.5vmax;
 }
@@ -163,6 +166,9 @@
 .w10{
     width: 10vmax;
 }
+.w11{
+    width: 11vmax;
+}
 .w14{
     width: 14vmax;
 }
@@ -222,6 +228,9 @@
 }
 .w35{
     width: 35vmax;
+}
+.w45{
+    width: 45vmax;
 }
 .w48{
     width: 48vmax;
@@ -349,8 +358,14 @@
 .h20{
     height: 20vmax;
 }
+.h22{
+    height: 22vmax;
+}
 .h24{
     height: 24vmax;
+}
+.h26{
+    height: 26vmax;
 }
 .h28{
     height: 28vmax;
@@ -522,6 +537,9 @@
 .brc_lp{
     border: 0.15vmax solid #d0c4df;
 }
+.brc_db{
+    border: 0.15vmax solid #54339e;
+}
 
 .pos_f{
     position: fixed;
@@ -572,6 +590,9 @@
 }
 .t_m_2_5{
     top: -2.5vmax;
+}
+.t_m_4{
+    top: -4vmax;
 }
 .t_22{
     top: 22vmax;
@@ -660,6 +681,9 @@
 }
 .h4{
     height: 4vmax;
+}
+.h17{
+    height: 17vmax;
 }
 .h18{
     height: 18vmax;

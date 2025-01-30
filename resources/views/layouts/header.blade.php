@@ -25,13 +25,13 @@
             </div>
             <div class="w17 h6 df fdr_r ali_c g2 c_w ff_m">
                 @guest
-                    <span class="fsz_0_8 js_e hvr">Войти</span>
-                    <span class="fsz_0_8 js_e hvr">Зарегистрироваться</span>
+                    <a href="{{route('sign_in_show')}}" class="fsz_0_8 js_e hvr c_w td_n">Войти</a>
+                    <a href="{{route('sign_up_show')}}" class="fsz_0_8 js_e hvr c_w td_n">Зарегистрироваться</a>
                 @endguest
 
                 @auth
-                    <a href="">Мои заявки</a>
-                    <a class="td_n c_w fsz_1" href="">Выйти</a>
+                    <a class="c_w td_n ff_mr fsz_0_8" href="{{route('user_appl')}}">Мои заявки</a>
+                    <a class="c_w td_n ff_mr fsz_0_8" class="td_n c_w fsz_1" href="{{Auth::logout()}}">Выйти</a>
                 @endauth
             </div>
         </div>

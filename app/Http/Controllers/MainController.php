@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Application;
 use App\Models\Product;
 use App\Models\Exemplar;
@@ -9,6 +10,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class MainController extends Controller
@@ -80,6 +83,67 @@ class MainController extends Controller
             }
             else{
                 return redirect()->route('index')->withErrors(['er'=>'Не удалось отправить заявку!']);
+            }
+        }
+    }
+
+    public function sign_in(Request $request){
+        $user_exist = User::select('*')->where('email', '=', $request->email)->exists();
+        if($user_exist){
+            $user = User::select('id','password')->where('email', '=', $request->email)->get();
+            if(Hash::check($request->pass, $user[0]->password)){
+                Auth::login(User::find($user[0]->id));
+                return redirect()->route('index')->withErrors(['mesн'=>'Вы вошли в аккаунт!']);
+            }
+            else{
+                return redirect()->back()->withErrors(['mess'=>'Неверный пароль!'])->withInput();
+            }
+        }
+        else{
+            return redirect()->route('sign_in_show')->withErrors(['mess'=>'Такого пользователя нет, зарегистрируйтесь!'])->withInput();
+        }
+    }
+
+    public function sign_up(Request $request){
+        $data = [
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'pass'=>$request->pass,
+        ];
+        $rule = [
+            'name'=>['required','min:2','regex:/^[А-ЯЁA-Z][а-яёa-z]*$/u'],
+            'email'=>['required', 'email','unique:users'],
+            'pass'=>['required', 'min:6','regex:/^[a-zA-Z0-9_]+$/'],
+        ];
+        $mess = [
+            'name.required'=>'Заполните имя!',
+            'name.min'=>'Длина имени должна быть не меньше двух символов!',
+            'name.regex'=>'Имя должно начинаться с заглавной буквы!',
+            'email.required'=>'Заполните почту!',
+            'email.email'=>'Неверный формат почты!',
+            'email.unique'=>'Такая почта уже используется!',
+            'pass.required'=>'Ввелите пароль!',
+            'pass.min'=>'Длина пароля: не менее 6-ти симолов!',
+            'pass.regex'=>'Пароль может содержать только латиницу и цифры!',
+        ];
+        $validate = Validator::make($data, $rule, $mess);
+        if($validate->fails()){
+            return redirect('sign_up')->withErrors($validate)->withInput();
+        }
+        else{
+            $create_user = User::insert([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->pass)
+            ]);
+            if($create_user){
+                Auth::login($create_user);
+                return redirect()->route('index')->withErrors([
+                    'success'=>'Успешная регистрация!'
+                ]);
+            }
+            else{
+                return redirect()->back()->withErrors(['unsuccess'=>'Не удалось зарегистрироваться!'])->withInput();
             }
         }
     }
