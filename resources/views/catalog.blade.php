@@ -40,21 +40,3 @@
     </div>
 </div>
 @endsection
-
-{{-- @if($count == 0 )
-                        <h3 class="ff_ml fsz_1_2">{{$p->name }}</h3>
-                    @endif
-
-                    @if($count == 0)
-                        {{$count}}
-                        <div class="df fdr_r w90 jc_spb">
-                    @endif
-                    <div class="">
-                        {{$count}}
-                        {{$e->name}}
-                    </div>
-                    @if($count%3 == 0 && $count!= 0)
-                        </div>
-                        <div class="df fdr_r w90 jc_spb">
-                        {{$count}}
-                    @endif --}}

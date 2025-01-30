@@ -2,7 +2,7 @@
 
 @section('title', 'Регистрация')
 @section('content')
-    <div class="w90 df fdr_c g1 c_dp">
+    <div class="w90 df fdr_c g1 c_dp min_h34">
         <h1 class="fsz_1 ff_ml fsz_1_5">Мои заявки</h1>
         @if ($count == 0)
             <div class="w90 ff_mr fsz_1_2">У вас нет заявок</div>

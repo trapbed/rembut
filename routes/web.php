@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\MainController;
+
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,4 +35,7 @@ Route::get('/sign_out', function(){ Auth::logout(); return redirect()->route('in
 Route::get('/my_applications', [MainController::class, 'user_appl'])->name('user_appl');
 
 
-Route::get('/admin_index/{where?}', [MainController::class, 'admin_index'])->name('admin_index');
+Route::get('/admin_index/{where?}', [MainController::class, 'admin_index'])->name('admin_index'); 
+
+Route::post('/admin/ch_status', [MainController::class, 'ch_status'])->name('ch_status');
+// 27.5

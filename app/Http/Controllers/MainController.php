@@ -142,7 +142,7 @@ class MainController extends Controller
                 'password'=>Hash::make($request->pass)
             ]);
             if($create_user){
-                Auth::login($create_user);
+                Auth::login(User::find(User::select('id')->where('email', '=', $request->email)->get()[0]->id));
                 return redirect()->route('index')->withErrors([
                     'success'=>'Успешная регистрация!'
                 ]);
@@ -159,7 +159,24 @@ class MainController extends Controller
     }
 
     public function admin_index($where=null){
-        $appls = Application::select('*')->get();
-        return view('/admin/index', ['appls'=>$appls]);
+        if($where == 'yes'){
+            $appls = DB::table('applications')->select( '*','applications.id as appl_id','exemplars.name as exe', 'products.name as prod')->where('status','=','Отправлена')->join('products', 'products.id', '=', 'applications.product_id')->join('exemplars', 'exemplars.id', '=', 'applications.exemplar_id')->simplePaginate(2);
+        }
+        else{
+            $appls = DB::table('applications')->select( '*','applications.id as appl_id','exemplars.name as exe', 'products.name as prod')->join('products', 'products.id', '=', 'applications.product_id')->join('exemplars', 'exemplars.id', '=', 'applications.exemplar_id')->simplePaginate(2);
+        }
+        return view('/admin/index', ['appls'=>$appls, 'count'=>$appls->count()]);
+    }
+
+    public function ch_status(Request $request){
+        $ch_status = Application::where('id','=',$request->appl_id)->update([
+            'status'=>$request->status
+        ]);
+        if($ch_status){
+            return redirect()->back()->withErrors(['mess'=>'Статус изменен!']);
+        }
+        else{
+            return redirect()->back()->withErrors(['mess'=>'Не удалось изменить статус!']);
+        }
     }
 }

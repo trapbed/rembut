@@ -367,6 +367,9 @@
 .h26{
     height: 26vmax;
 }
+.h27_5{
+    height: 27.5vmax;
+}
 .h28{
     height: 28vmax;
 }
@@ -689,6 +692,9 @@
     height: 18vmax;
 }
 
+.min_h27_5{
+    min-height: 27.5vmax;
+}
 .min_h34{
     min-height: 34vmax;
 }
