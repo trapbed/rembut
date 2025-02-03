@@ -17,6 +17,19 @@
         <input class="btn_lp_dp ou_n w6 paa_1 ff_m br_03 als_e" type="submit" value="Войти">
         <span class="als_c ff_mr fsz_0_8">Еще нет аккаунта? <a href="{{route('sign_up_show')}}">Зарегистрируйтесь!</a></span>
     </form>
+    @if ($errors->any())
+        <div class="pos_r">
+            <div class="t_m_4 l_20 pos_a w24 ">
+                    <ul class="paa_1 df fdr_c g1 ls_n fsz_0_8">
+                        @foreach ($errors->all() as $e)
+                            <li class="paa_1 bg_lp br_03 c_dp ff_mr fsz_0_8">{{$e}}</li>
+                        @endforeach
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+        @endif
 </div>
 
 @endsection

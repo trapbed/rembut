@@ -36,6 +36,7 @@ Route::get('/my_applications', [MainController::class, 'user_appl'])->name('user
 
 
 Route::get('/admin_index/{where?}', [MainController::class, 'admin_index'])->name('admin_index'); 
+Route::get('/admin/spares', [MainController::class, 'get_spares_list'])->name('admin_spares');
 
 Route::post('/admin/ch_status', [MainController::class, 'ch_status'])->name('ch_status');
 // 27.5

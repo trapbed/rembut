@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Application;
 use App\Models\Product;
 use App\Models\Exemplar;
+use App\Models\Spare;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
@@ -178,5 +179,11 @@ class MainController extends Controller
         else{
             return redirect()->back()->withErrors(['mess'=>'Не удалось изменить статус!']);
         }
+    }
+
+    public function get_spares_list(){
+        $spares = DB::table('spares')->select('spares.id as spare_id', 'spares.name as spare_name', 'amount','manafacturer', 'products.name as prod', 'exemplars.name as exe', 'weight')->leftJoin('exemplars', 'exemplars.id', '=', 'spares.exemplar_id')->leftJoin('products', 'products.id', '=', 'exemplars.product_id')->simplePaginate(10);
+        // dd($spares);
+        return view('admin.spares', ['spares'=>$spares]);
     }
 }

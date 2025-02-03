@@ -15,7 +15,7 @@
             <div class="w60  h6 df fdr_r ali_c jc_spb ff_m fsz_0_8">
                 <div class="df fdr_r g4">
                     <a class="td_n c_w hvr" href="{{route('admin_index')}}">Заявки</a>
-                    <a class="td_n c_w hvr" href="{{route('admin_index')}}">Детали</a>
+                    <a class="td_n c_w hvr" href="{{route('admin_spares')}}">Детали</a>
                 </div>
                 
                 <div class="df fdr_r g2 c_w">
